@@ -346,7 +346,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2526999672289343646, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.43
       objectReference: {fileID: 0}
     - target: {fileID: 2526999672289343646, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
       propertyPath: m_LocalPosition.y
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2526999672289343646, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.09
+      value: -11.28
       objectReference: {fileID: 0}
     - target: {fileID: 2526999672289343646, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -382,6 +382,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2526999672289343646, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664516439833769622, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664516439833769622, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664516439833769622, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6169269855150635645, guid: 84ab91f0430f3c645af69ef0e232ab88, type: 3}
@@ -1204,7 +1216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1958160390}
   - component: {fileID: 1958160389}
-  - component: {fileID: 1958160388}
   - component: {fileID: 1958160387}
   - component: {fileID: 1958160386}
   m_Layer: 0
@@ -1273,14 +1284,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1958160388
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958160385}
-  m_Enabled: 1
 --- !u!20 &1958160389
 Camera:
   m_ObjectHideFlags: 0
