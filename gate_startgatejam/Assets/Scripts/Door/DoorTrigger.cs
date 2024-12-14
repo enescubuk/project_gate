@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -46,6 +45,7 @@ public class DoorTrigger : MonoBehaviour
     {
         Debug.Log("Open door mini game");
         openDoorMiniGamePanel.SetActive(true);
+        openDoorMiniGamePanel.GetComponent<DoorMiniGame>().CurrentDoorTrigger = this;
     }
 
     public void CloseDoorMiniGame()
@@ -56,7 +56,7 @@ public class DoorTrigger : MonoBehaviour
         MoveDoor();
     }
 
-    private void MoveDoor()
+    public void MoveDoor()
     {
         GetComponentInParent<DoorAnimation>().MoveDoor();
     }

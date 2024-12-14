@@ -13,12 +13,43 @@ public class DoorMiniGame : MonoBehaviour
     [SerializeField] private int correctAreaGap;
     [SerializeField] private int correctPinGap;
     private bool correctZone = false;
-    [SerializeField] private UnityEvent onGameOver;
+    public DoorTrigger CurrentDoorTrigger;
     private void OnEnable()
     {
         SetPins();
         CalculateRandomGap();
+        ResetColors();
+        ResetPositions();
+        counterPin = 0;
     }
+
+    private void ResetPositions()
+    {
+        for (int i = 0; i < pins.Length; i++)
+        {
+            Vector2 _pos = pins[i].GetComponent<RectTransform>().anchoredPosition;
+            _pos.y = 0;
+            pins[i].GetComponent<RectTransform>().anchoredPosition = _pos;
+            for (int j = 0; j < pins[i].transform.childCount; j++)
+            {
+                Vector2 _childPos = pins[i].transform.GetChild(j).GetComponent<RectTransform>().anchoredPosition;
+                _childPos.y = 10 - (j * 75);
+                pins[i].transform.GetChild(j).GetComponent<RectTransform>().anchoredPosition = _childPos;
+            }
+        }
+    }
+
+    private void ResetColors()
+    {
+        for (int i = 0; i < pins.Length; i++)
+        {
+            for (int j = 0; j < pins[i].transform.childCount; j++)
+            {
+                pins[i].transform.GetChild(j).GetComponent<Image>().color = Color.white;
+            }
+        }
+    }
+
 
     private void SetPins()
     {
@@ -70,7 +101,7 @@ public class DoorMiniGame : MonoBehaviour
 
     private void GameOver()
     {
-        onGameOver.Invoke();
+        CurrentDoorTrigger.CloseDoorMiniGame();
     }
 
     private System.Collections.IEnumerator SmoothMove(RectTransform rectTransform, Vector2 targetPos, float time)
@@ -166,5 +197,10 @@ public class DoorMiniGame : MonoBehaviour
                 correctZone = false;
             }
         }
+    }
+
+    internal void SetEvent(Action moveDoor)
+    {
+        throw new NotImplementedException();
     }
 }
