@@ -37,10 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.Normalize();
 
-        characterRigidbody.AddForce(moveDirection.normalized * moveSpeed,ForceMode.Force);
-    
-        characterRigidbody.linearDamping = 5;
+        characterRigidbody.MovePosition(characterRigidbody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
-
 }
