@@ -37,20 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.Normalize();
 
-        characterRigidbody.AddForce(moveDirection.normalized * moveSpeed,ForceMode.Force);
-    
-        RaycastHit hit;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-
-        if (isGrounded)
-        {
-            characterRigidbody.linearDamping = 5;
-        }
-        else
-        {
-            characterRigidbody.linearDamping = 0;
-        }
+        characterRigidbody.MovePosition(characterRigidbody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
-
 }
