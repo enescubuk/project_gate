@@ -17,17 +17,12 @@ public class DoorAnimation : MonoBehaviour
     }
     private void OpenDoor()
     {
-        StartCoroutine(RotateDoor(new Vector3(0, 90, 0)));
+        StartCoroutine(RotateDoor(new Vector3(0, -90, 0)));
     }
 
     private void GoToMiddle()
     {
         StartCoroutine(RotateDoor(new Vector3(0, 0, 0)));
-    }
-
-    private void CloseDoor()
-    {
-        StartCoroutine(RotateDoor(new Vector3(0, -90, 0)));
     }
 
     public void MoveDoor()
