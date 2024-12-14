@@ -33,7 +33,7 @@ public class DoorMiniGame : MonoBehaviour
             for (int j = 0; j < pins[i].transform.childCount; j++)
             {
                 Vector2 _childPos = pins[i].transform.GetChild(j).GetComponent<RectTransform>().anchoredPosition;
-                _childPos.y = 10 - (j * 75);
+                _childPos.y = 10 - (j * 41);
                 pins[i].transform.GetChild(j).GetComponent<RectTransform>().anchoredPosition = _childPos;
             }
         }
@@ -62,7 +62,7 @@ public class DoorMiniGame : MonoBehaviour
 
     private void CalculateRandomGap()
     {
-        _botSide = UnityEngine.Random.Range(0, 55-correctAreaGap);
+        _botSide = UnityEngine.Random.Range(-5, 31-correctAreaGap);
         _topSide = _botSide + correctAreaGap;
     }
 
@@ -84,13 +84,13 @@ public class DoorMiniGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && correctZone)
         {
             Vector2 _pinPos = pins[counterPin].GetComponent<RectTransform>().anchoredPosition;
-            _pinPos.y = 22.5f;
+            _pinPos.y = 15f;
             StartCoroutine(SmoothMove(pins[counterPin].GetComponent<RectTransform>(), _pinPos, 0.1f));
             counterPin++;
             if (counterPin >= pins.Length)
             {
                 Debug.Log("Game Over");
-                Invoke("GameOver", 1f);
+                Invoke("GameOver", 0.5f);
             }
             else
             {
@@ -174,7 +174,7 @@ public class DoorMiniGame : MonoBehaviour
     {
         RectTransform rectTransform = pin.GetComponent<RectTransform>();
         Vector3 position = rectTransform.anchoredPosition;
-        position.y = Mathf.Clamp(position.y, 0, 55);
+        position.y = Mathf.Clamp(position.y, -5, 31);
         rectTransform.anchoredPosition = position;
     }
 
