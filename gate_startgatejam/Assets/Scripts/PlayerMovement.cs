@@ -40,7 +40,17 @@ public class PlayerMovement : MonoBehaviour
 
         characterRigidbody.AddForce(moveDirection.normalized * moveSpeed,ForceMode.Force);
     
-        characterRigidbody.linearDamping = 5;
+        RaycastHit hit;
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+
+        if (isGrounded)
+        {
+            characterRigidbody.linearDamping = 5;
+        }
+        else
+        {
+            characterRigidbody.linearDamping = 0;
+        }
     }
 
 }
