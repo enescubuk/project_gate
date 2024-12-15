@@ -481,3 +481,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   orientation: {fileID: 2462460641902641058}
+  heightOffset: {x: 0, y: -1.5, z: -1.5}
+  stairHeight: 0.777
+  climbSpeed: 4
+  dist: 3
+  Div: 2
+  stairs:
+    serializedVersion: 2
+    m_Bits: 64

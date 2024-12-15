@@ -186,6 +186,7 @@ public class DoorMiniGame : MonoBehaviour
             for (int i = 0; i < pins[counterPin].transform.childCount; i++)
             {
                 pins[counterPin].transform.GetChild(i).GetComponent<Image>().color = Color.green;
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.unlockClip);
                 correctZone = true;
             }
         }

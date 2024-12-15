@@ -10,43 +10,56 @@ public class DoorAnimation : MonoBehaviour
     }
 
     public DoorState CurrentState { get; private set; }
-    
+    private bool isAnimating = false; // Kapının animasyon halinde olup olmadığını kontrol eder.
+
     private void Start()
     {
         CurrentState = DoorState.Idle;
     }
+
     private void OpenDoor()
     {
-        StartCoroutine(RotateDoor(new Vector3(0, -90, 0)));
+        if (isAnimating) return; // Animasyon sırasında yeni girişleri engelle
+        StartCoroutine(RotateDoor(new Vector3(0, -90, 0), DoorState.Open));
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.doorOpenClip);
     }
 
-    private void GoToMiddle()
+    private void CloseDoor()
     {
-        StartCoroutine(RotateDoor(new Vector3(0, 0, 0)));
+        if (isAnimating) return; // Animasyon sırasında yeni girişleri engelle
+        StartCoroutine(RotateDoor(new Vector3(0, 0, 0), DoorState.Idle));
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.doorCloseClip);
     }
 
     public void MoveDoor()
     {
+        if (isAnimating) return; // Animasyon devam ederken tetiklemeyi engelle
+
         switch (CurrentState)
         {
             case DoorState.Idle:
                 OpenDoor();
-                CurrentState = DoorState.Open;
                 break;
             case DoorState.Open:
-                GoToMiddle();
-                CurrentState = DoorState.Idle;
+                CloseDoor();
                 break;
         }
     }
 
-    private IEnumerator RotateDoor(Vector3 targetRotation)
+    private IEnumerator RotateDoor(Vector3 targetRotation, DoorState endState)
     {
+        isAnimating = true; // Animasyonun başladığını işaretle
+
+        // Kapının dönüşünü tanımla
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = Quaternion.Euler(targetRotation);
-        float duration = 1.0f; // Duration of the rotation in seconds
+        float duration = 1.0f; // Animasyon süresi
         float elapsed = 0.0f;
 
+        // Sürüklenme sesi çal
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.doorDragClip);
+
+        // Kapının yumuşak bir şekilde dönmesi
         while (elapsed < duration)
         {
             transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsed / duration);
@@ -54,7 +67,8 @@ public class DoorAnimation : MonoBehaviour
             yield return null;
         }
 
-        transform.rotation = endRotation;
+        transform.rotation = endRotation; // Döndürme işlemini tamamlama
+        CurrentState = endState; // Kapının yeni durumunu ayarla
+        isAnimating = false; // Animasyonun bittiğini işaretle
     }
-
 }
