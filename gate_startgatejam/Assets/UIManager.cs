@@ -6,11 +6,6 @@ public class UIManager : MonoBehaviour
     public GameObject pausePnl;
     public bool isPnlOpen;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
