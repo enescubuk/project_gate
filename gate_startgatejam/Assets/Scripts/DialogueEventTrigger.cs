@@ -15,6 +15,7 @@ public class DialogueEventTrigger : MonoBehaviour
         if (other.CompareTag("PlayerBody"))
         {
             EventTriggered();
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 

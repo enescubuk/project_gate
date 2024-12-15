@@ -31,6 +31,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlayBGM();
+    }
+
     public void PlaySFX(AudioClip clip)
     {
         if (clip != null)
