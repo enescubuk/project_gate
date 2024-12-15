@@ -9,6 +9,7 @@ public class DialogueEventTrigger : MonoBehaviour
     [SerializeField] private List<string> dialogueTexts; // Diyalog listesi
     [SerializeField] private float typingSpeed = 0.05f; // Harf yazma hızı
     [SerializeField] private float dialogueDuration = 2f; // Her diyalog arasında bekleme süresi
+    [SerializeField] private AudioClip dialogueClip; // Diyalog sesi
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +23,7 @@ public class DialogueEventTrigger : MonoBehaviour
     private void EventTriggered()
     {
         dialogueCanvas.SetActive(true);
+        PlaySound();
         StartCoroutine(PlayDialogue());
     }
 
@@ -46,6 +48,14 @@ public class DialogueEventTrigger : MonoBehaviour
         {
             dialogueTextComponent.text += letter;
             yield return new WaitForSeconds(typingSpeed); // Harf arası yazma hızı
+        }
+    }
+
+    private void PlaySound()
+    {
+        if (dialogueClip != null)
+        {
+            SoundManager.Instance.PlayDialogue(dialogueClip);
         }
     }
 }
