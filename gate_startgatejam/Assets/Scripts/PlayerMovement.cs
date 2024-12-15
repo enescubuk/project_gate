@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             SoundManager.Instance.PlaySFX(SoundManager.Instance.footstepClip);
 
             // Sesi belirli bir süre sonra tekrar çal (örneğin, adım aralığına göre)
-            Invoke(nameof(ResetFootstep), 0.5f); // 0.5 saniyede bir çal
+            Invoke(nameof(ResetFootstep), 0.4f); // 0.5 saniyede bir çal
         }
     }
 

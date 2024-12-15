@@ -87,6 +87,7 @@ public class DoorMiniGame : MonoBehaviour
             _pinPos.y = 15f;
             StartCoroutine(SmoothMove(pins[counterPin].GetComponent<RectTransform>(), _pinPos, 0.1f));
             counterPin++;
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.unlockClip);
             if (counterPin >= pins.Length)
             {
                 Debug.Log("Game Over");
@@ -186,7 +187,6 @@ public class DoorMiniGame : MonoBehaviour
             for (int i = 0; i < pins[counterPin].transform.childCount; i++)
             {
                 pins[counterPin].transform.GetChild(i).GetComponent<Image>().color = Color.green;
-                SoundManager.Instance.PlaySFX(SoundManager.Instance.unlockClip);
                 correctZone = true;
             }
         }
