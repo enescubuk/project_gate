@@ -5,6 +5,7 @@ using UnityEngine.Timeline;
 public class CutScenePlayer : MonoBehaviour
 {
     private PlayableDirector custscene;
+    public AudioSource source;
 
     void Start()
     {
@@ -19,6 +20,10 @@ public class CutScenePlayer : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerBody"))
+        {
+            
         custscene.Play();
+        source.Play();
+        }
     }
 }
